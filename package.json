@@ -1,0 +1,20 @@
+{
+  "name": "antimatter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "antimatter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Annyeong-One/Antimatter.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Annyeong-One/Antimatter/issues"
+  },
+  "homepage": "https://github.com/Annyeong-One/Antimatter#readme"
+}
