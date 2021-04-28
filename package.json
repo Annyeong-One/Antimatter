@@ -2,19 +2,31 @@
   "name": "antimatter",
   "version": "1.0.0",
   "description": "",
-  "main": "antimatter.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+	"start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Annyeong-One/Antimatter.git"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku",
+    "discord.js"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Annyeong-One/Antimatter/issues"
   },
-  "homepage": "https://github.com/Annyeong-One/Antimatter#readme"
+  "homepage": "https://github.com/Annyeong-One/Antimatter#readme",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "ytdl-core": "^4.5.0"
+  },
+  "engines": {
+  "node": "14.15.5",
+  "npm": "6.14.11"
+  }
 }
