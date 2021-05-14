@@ -171,7 +171,7 @@ client.on("message", msg => {
         if (!args[0]) {
             msg.reply("청소할 만큼의 값을 >청소 10 과 같이 정수로 적어주세요!") // undo if empty
         }
-        else if (!Number.isInteger(args[0])) {
+        else if (args[0] < 50) {
             msg.reply(`메세지를 ${args[0]}개 지울 순 없어요. 1 이상 50 이하의 자연수를 적어주세요!`) // integer
         }
         else if (args[0] > 50) {
