@@ -1,9 +1,10 @@
 const Discord = require("discord.js");
 const config = require('./config.json')
 const ytdl = require("ytdl-core");
+const ffmpegneeded = require('ffmpeg-static');
 const client = new Discord.Client();
 const prefix = ">"
-var servers = {};
+const queue = new Map();
 
 
 client.on("ready", () => { 
@@ -15,15 +16,15 @@ client.on('guildMemberAdd', member => {
     const channel = member.guild.channels.cache.find(ch => ch.name === 'c1_환영해요');
     // Do nothing if the channel wasn't found on this server
     if (!channel) return;
-    // Send the message, mentioning the member
+    // Send the msg, mentioning the member
     channel.send(`${member}님, 서버에 오신 것을 환영해요!`);
 });
-
 client.on("message", msg => {
     if (!msg.guild) return;
     if (msg.content.indexOf(prefix) !== 0) return; // Prefix?
     var args = msg.content.slice(prefix.length).trim().split(/ +/g); // argument(args) split
     var command = args.shift().toLowerCase();
+    const serverQueue = queue.get(msg.guild.id);
     console.log(`command starting, ping: ${client.ws.ping}`)
     if (command === `핑`) { // 핑확인
         var embed = new Discord.MessageEmbed()
@@ -42,7 +43,7 @@ client.on("message", msg => {
             .setImage("https://cdn.discordapp.com/attachments/743278181112610828/812323525863669800/7e41d26.jpg") // mainimg
             .setTimestamp() // empty for current time, dont fill
             .addField("오 예", "미터법이 최고지") // description
-        msg.reply(embed) // reply message
+        msg.reply(embed) // reply msg
         console.log ('>변 returned')
     }
     if (command === "help") {
@@ -56,7 +57,7 @@ client.on("message", msg => {
         .addField('0. 도움', '업뎃내역\nhelp-easter', true)
         .addField('1. 기능', '핑\n청소\n아바타', true)
         .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
-        msg.reply(embed) // reply message
+        msg.reply(embed) // reply msg
         console.log ('>help returned')
     }
     if (command === "help-easter") {
@@ -70,7 +71,7 @@ client.on("message", msg => {
         .addField('1. 형식', '접두사 이후 띄어쓰기가 없는 단어입니다.', true)
         .addField('2. 힌트 보기', '>힌트a-b를 사용하여 a번째 이스터에그의\nb번째 힌트를 확인할 수 있습니다.\n띄어쓰기는 하지 않아야 합니다.', true)
         .addField('3. 목록', '0번 이스터에그 - ???, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18개, 힌트 3개', true)
-        msg.reply(embed) // reply message
+        msg.reply(embed) // reply msg
         console.log ('>helpeaster returned')
     }
     if (command === "업뎃내역") {
@@ -269,6 +270,109 @@ client.on("message", msg => {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!") ;
         console.log ('Easter Egg No.0 Found!')
     }
+    if (command === "play") {
+        execute(msg, serverQueue);
+        return;
+    }
+    if (command === "skip") {
+        skip(msg, serverQueue);
+        return;
+    }
+    if (command === "stop") {
+        stop(msg, serverQueue);
+        return;
+    }
 });
+async function execute(msg, serverQueue) {
+    const args = msg.content.split(" ");
+  
+    const voiceChannel = msg.member.voice.channel;
+    if (!voiceChannel)
+      return msg.channel.send(
+        "You need to be in a voice channel to play music!"
+      );
+    const permissions = voiceChannel.permissionsFor(msg.client.user);
+    if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+      return msg.channel.send(
+        "I need the permissions to join and speak in your voice channel!"
+      );
+    }
+  
+    const songInfo = await ytdl.getInfo(args[1]);
+    const song = {
+          title: songInfo.videoDetails.title,
+          url: songInfo.videoDetails.video_url,
+     };
+  
+    if (!serverQueue) {
+      const queueContruct = {
+        textChannel: msg.channel,
+        voiceChannel: voiceChannel,
+        connection: null,
+        songs: [],
+        volume: 5,
+        playing: true
+      };
+  
+      queue.set(msg.guild.id, queueContruct);
+  
+      queueContruct.songs.push(song);
+  
+      try {
+        var connection = await voiceChannel.join();
+        queueContruct.connection = connection;
+        play(msg.guild, queueContruct.songs[0]);
+      } catch (err) {
+        console.log(err);
+        queue.delete(msg.guild.id);
+        return msg.channel.send(err);
+      }
+    } else {
+      serverQueue.songs.push(song);
+      return msg.channel.send(`${song.title} has been added to the queue!`);
+    }
+  }
+  
+  function skip(msg, serverQueue) {
+    if (!msg.member.voice.channel)
+      return msg.channel.send(
+        "You have to be in a voice channel to stop the music!"
+      );
+    if (!serverQueue)
+      return msg.channel.send("There is no song that I could skip!");
+    serverQueue.connection.dispatcher.end();
+  }
+  
+  function stop(msg, serverQueue) {
+    if (!msg.member.voice.channel)
+      return msg.channel.send(
+        "You have to be in a voice channel to stop the music!"
+      );
+      
+    if (!serverQueue)
+      return msg.channel.send("There is no song that I could stop!");
+      
+    serverQueue.songs = [];
+    serverQueue.connection.dispatcher.end();
+  }
+  
+  function play(guild, song) {
+    const serverQueue = queue.get(guild.id);
+    if (!song) {
+      serverQueue.voiceChannel.leave();
+      queue.delete(guild.id);
+      return;
+    }
+  
+    const dispatcher = serverQueue.connection
+      .play(ytdl(song.url))
+      .on("finish", () => {
+        serverQueue.songs.shift();
+        play(guild, serverQueue.songs[0]);
+      })
+      .on("error", error => console.error(error));
+    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+    serverQueue.textChannel.send(`Start playing: **${song.title}**`);
+  }
 
 client.login(config.token)
