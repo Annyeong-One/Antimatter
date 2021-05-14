@@ -75,7 +75,7 @@ client.on("message", msg => {
         console.log ('>helpeaster returned')
     }
     if (command === "업뎃내역") {
-        msg.channel.bulkDelete(1).then(msg.channel.send(`안티매터 봇 Release V1.0 입니다.\n봇 24시간 구동을 시작합니다.`))
+        msg.channel.bulkDelete(1).then(msg.channel.send(`안티매터 봇이 1.0버전으로 업데이트 되었습니다!\n봇 24시간 구동을 시작합니다.`))
         msg.channel.send("이스터에그 및 이스터에그용 힌트, >청소 명령어 실패, 업뎃내역 등 일부를 제외한 명령어가 임베드됩니다.")
         msg.channel.send("도배 명령어가 삭제됩니다.")
         msg.channel.send("chudnovsky 명령어가 삭제됩니다.")
