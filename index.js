@@ -70,7 +70,7 @@ client.on("message", msg => {
         .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
         .addField('1. 형식', '접두사 이후 띄어쓰기가 없는 단어입니다.', true)
         .addField('2. 힌트 보기', '>힌트a-b를 사용하여 a번째 이스터에그의\nb번째 힌트를 확인할 수 있습니다.\n띄어쓰기는 하지 않아야 합니다.', true)
-        .addField('3. 목록', '0번 이스터에그 - ???, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18개, 힌트 3개', true)
+        .addField('3. 목록', '0번 이스터에그 - WW91bmdyZS1pcy1pZGlvdC03ODU5MDQyMw==, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18개, 힌트 3개', true)
         msg.reply(embed) // reply msg
         console.log ('>helpeaster returned')
     }
