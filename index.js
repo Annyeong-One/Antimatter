@@ -127,12 +127,15 @@ client.on("message", msg => {
     if (command === "갸변저항") {
         var embed = new Discord.MessageEmbed()
         .setTitle("GyaByun Resistor 노래 모음")
-        .addField('Aleph Byun', 'https://cdn.discordapp.com/attachments/805963165229776951/826269045744467979/Aleph_Byun.mp3', true)
-        .addField('Byuntapper', 'https://cdn.discordapp.com/attachments/805963165229776951/826269046945218560/Byuntapper.mp3', true)
-        .addField('R', 'https://cdn.discordapp.com/attachments/805963165229776951/826269052028059728/R_Byun.mp3', true)
-        .addField('sd-byunbyunbyun', 'https://cdn.discordapp.com/attachments/805963165229776951/826269054083268608/sd-byunbyunbyun.mp3', true)
+        .addField('Aleph Byun', '>gyabyun-1', true)
+        .addField('Byuntapper', '>gyabyun-2', true)
+        .addField('R', '>gyabyun-3', true)
+        .addField('sd-byunbyunbyun', '>gyabyun-4', true)
         msg.reply(embed);
         console.log ('>갸변저항 returned')
+    }
+    if (command === "아") {
+        
     }
     if (command === "a반") {
         var embed = new Discord.MessageEmbed()
@@ -164,7 +167,7 @@ client.on("message", msg => {
         console.log ('>무야호 returned')
     }
     if (command === "pi") {
-        msg.channel.send({files: ['./314159.txt']});
+        msg.channel.send({files: ['./sendfile/314159.txt']});
         console.log ('>pi returned')
     }
     if (command === `청소`) { // 만약에 메세지 내용이 청소라면?
