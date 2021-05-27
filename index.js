@@ -57,7 +57,7 @@ client.on("message", msg => {
         .setDescription('안티매터봇의 명령어 목록입니다.')
         .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
         .addField('0. 도움', '업뎃내역\nhelp-easter', true)
-        .addField('1. 기능', '핑\n청소\n아바타', true)
+        .addField('1. 기능', '핑\n청소\n삭제\n아바타', true)
         .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
         msg.reply(embed) // reply msg
         console.log ('>help returned')
