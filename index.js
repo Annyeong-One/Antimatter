@@ -152,7 +152,7 @@ client.on("message", msg => {
         }
         voiceChannel.join()
             .then(connection => {
-                connection.play('./sendfile/Aleph-byun.mp3');
+                connection.play('./sendfile/Aleph-Byun.mp3');
                 for (const connection of client.voice.connections.values()) {
             }
                 console.log ('music is on')
