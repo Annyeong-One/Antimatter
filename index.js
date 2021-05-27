@@ -1,6 +1,7 @@
 const Discord = require("discord.js");
 const config = require('./config.json')
 const ytdl = require("ytdl-core");
+const opus = require("@discordjs/opus")
 const ffmpegneeded = require('ffmpeg-static');
 const client = new Discord.Client();
 const prefix = ">"
@@ -19,6 +20,7 @@ client.on('guildMemberAdd', member => {
     // Send the msg, mentioning the member
     channel.send(`${member}님, 서버에 오신 것을 환영해요!`);
 });
+//from here is command lists
 client.on("message", msg => {
     if (!msg.guild) return;
     if (msg.content.indexOf(prefix) !== 0) return; // Prefix?
@@ -131,11 +133,94 @@ client.on("message", msg => {
         .addField('Byuntapper', '>gyabyun-2', true)
         .addField('R', '>gyabyun-3', true)
         .addField('sd-byunbyunbyun', '>gyabyun-4', true)
+        .addField('노래 끝내기', '>stop', true)
         msg.reply(embed);
         console.log ('>갸변저항 returned')
     }
-    if (command === "아") {
+    if (command === "gyabyun-1") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "You need to be in a voice channel to play music!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "I need the permissions to join and speak in your voice channel!"
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/Aleph-byun.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
         
+    }
+    if (command === "gyabyun-2") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "You need to be in a voice channel to play music!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "I need the permissions to join and speak in your voice channel!"
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/bbbyyyuuunnn.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
+    if (command === "gyabyun-3") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "You need to be in a voice channel to play music!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "I need the permissions to join and speak in your voice channel!"
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/byuntapper.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
+    if (command === "gyabyun-4") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "You need to be in a voice channel to play music!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "I need the permissions to join and speak in your voice channel!"
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/R.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
+    if (command === "stop") {
+        const voiceChannel = msg.member.voice.channel;
+        voiceChannel.leave();
+        return;
     }
     if (command === "a반") {
         var embed = new Discord.MessageEmbed()
@@ -273,109 +358,7 @@ client.on("message", msg => {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!") ;
         console.log ('Easter Egg No.0 Found!')
     }
-    if (command === "play") {
-        execute(msg, serverQueue);
-        return;
-    }
-    if (command === "skip") {
-        skip(msg, serverQueue);
-        return;
-    }
-    if (command === "stop") {
-        stop(msg, serverQueue);
-        return;
-    }
 });
-async function execute(msg, serverQueue) {
-    const args = msg.content.split(" ");
-  
-    const voiceChannel = msg.member.voice.channel;
-    if (!voiceChannel)
-      return msg.channel.send(
-        "You need to be in a voice channel to play music!"
-      );
-    const permissions = voiceChannel.permissionsFor(msg.client.user);
-    if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
-      return msg.channel.send(
-        "I need the permissions to join and speak in your voice channel!"
-      );
-    }
-  
-    const songInfo = await ytdl.getInfo(args[1]);
-    const song = {
-          title: songInfo.videoDetails.title,
-          url: songInfo.videoDetails.video_url,
-     };
-  
-    if (!serverQueue) {
-      const queueContruct = {
-        textChannel: msg.channel,
-        voiceChannel: voiceChannel,
-        connection: null,
-        songs: [],
-        volume: 5,
-        playing: true
-      };
-  
-      queue.set(msg.guild.id, queueContruct);
-  
-      queueContruct.songs.push(song);
-  
-      try {
-        var connection = await voiceChannel.join();
-        queueContruct.connection = connection;
-        play(msg.guild, queueContruct.songs[0]);
-      } catch (err) {
-        console.log(err);
-        queue.delete(msg.guild.id);
-        return msg.channel.send(err);
-      }
-    } else {
-      serverQueue.songs.push(song);
-      return msg.channel.send(`${song.title} has been added to the queue!`);
-    }
-  }
-  
-  function skip(msg, serverQueue) {
-    if (!msg.member.voice.channel)
-      return msg.channel.send(
-        "You have to be in a voice channel to stop the music!"
-      );
-    if (!serverQueue)
-      return msg.channel.send("There is no song that I could skip!");
-    serverQueue.connection.dispatcher.end();
-  }
-  
-  function stop(msg, serverQueue) {
-    if (!msg.member.voice.channel)
-      return msg.channel.send(
-        "You have to be in a voice channel to stop the music!"
-      );
-      
-    if (!serverQueue)
-      return msg.channel.send("There is no song that I could stop!");
-      
-    serverQueue.songs = [];
-    serverQueue.connection.dispatcher.end();
-  }
-  
-  function play(guild, song) {
-    const serverQueue = queue.get(guild.id);
-    if (!song) {
-      serverQueue.voiceChannel.leave();
-      queue.delete(guild.id);
-      return;
-    }
-  
-    const dispatcher = serverQueue.connection
-      .play(ytdl(song.url))
-      .on("finish", () => {
-        serverQueue.songs.shift();
-        play(guild, serverQueue.songs[0]);
-      })
-      .on("error", error => console.error(error));
-    dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    serverQueue.textChannel.send(`Start playing: **${song.title}**`);
-  }
 
 client.login(config.token)
+//client.login('ODMwOTc0MDk0NDA0NDg1MTgw.YHOe7g.iz4wL4DsZnR8XulODIq6VYCFFbw')
