@@ -145,6 +145,7 @@ client.on("message", msg => {
             );
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            console.log ('>갸변저항 returned')
             return msg.channel.send(
                 "I need the permissions to join and speak in your voice channel!"
             );
@@ -154,6 +155,7 @@ client.on("message", msg => {
                 connection.play('./sendfile/Aleph-byun.mp3');
                 for (const connection of client.voice.connections.values()) {
             }
+                console.log ('music is on')
             })
         
     }
