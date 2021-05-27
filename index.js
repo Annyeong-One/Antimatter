@@ -276,6 +276,21 @@ client.on("message", msg => {
         }
         console.log ('>청소 returned')
     }
+    if (command === `삭제`) { 
+        if (!args[0]) {
+            msg.reply("청소할 만큼의 값을 >청소 10 과 같이 정수로 적어주세요!") // undo if empty
+        }
+        else if (args[0] < 0) {
+            msg.reply(`메세지를 ${args[0]}개 지울 순 없어요. 1 이상 50 이하의 자연수를 적어주세요!`) // integer
+        }
+        else if (args[0] > 50) {
+            msg.reply(`${args[0]}개씩이나 지울 일이 있어요? 최대 50개까지 지울 수 있어요!`) // undo if length > 10
+        }
+        else {
+        msg.channel.bulkDelete(args[0])
+        }
+        console.log ('>청소 returned')
+    }
     if (command === "힌트1-1") {
         msg.channel.send("브레인리그 건물 옥상에서 넘어지면, 얼굴은 경기과고 정문까지 닿고도 7km을 더 간다죠?");
         console.log ('hint11 returned')
