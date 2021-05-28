@@ -3,6 +3,7 @@ const config = require('./config.json')
 const ytdl = require("ytdl-core");
 const opus = require("@discordjs/opus")
 const ffmpegneeded = require('ffmpeg-static');
+const hook = new Discord.WebhookClient('847636751379857448', config.hooktoken);
 const client = new Discord.Client();
 const prefix = ">"
 const queue = new Map();
@@ -33,7 +34,6 @@ client.on("message", msg => {
             .setColor("DEFAULT")
             .setDescription(`퐁! 현재 Antimatter의 핑은 ${client.ws.ping}ms입니다.`)
         msg.reply(embed)
-        console.log ('>핑 returned')
     }
     if (command === `변`) {
         var embed = new Discord.MessageEmbed()
@@ -45,8 +45,7 @@ client.on("message", msg => {
             .setImage("https://cdn.discordapp.com/attachments/743278181112610828/812323525863669800/7e41d26.jpg") // mainimg
             .setTimestamp() // empty for current time, dont fill
             .addField("오 예", "미터법이 최고지") // description
-        msg.reply(embed) // reply msg
-        console.log ('>변 returned')
+        msg.reply(embed) // reply msg=
     }
     if (command === "help") {
         var embed = new Discord.MessageEmbed()
@@ -60,7 +59,6 @@ client.on("message", msg => {
         .addField('1. 기능', '핑\n청소\n삭제\n아바타', true)
         .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
         msg.reply(embed) // reply msg
-        console.log ('>help returned')
     }
     if (command === "help-easter") {
         var embed = new Discord.MessageEmbed()
@@ -74,7 +72,6 @@ client.on("message", msg => {
         .addField('2. 힌트 보기', '>힌트a-b를 사용하여 a번째 이스터에그의\nb번째 힌트를 확인할 수 있습니다.\n띄어쓰기는 하지 않아야 합니다.', true)
         .addField('3. 목록', '0번 이스터에그 - WW91bmdyZS1pcy1pZGlvdC03ODU5MDQyMw==, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18개, 힌트 3개', true)
         msg.reply(embed) // reply msg
-        console.log ('>helpeaster returned')
     }
     if (command === "업뎃내역") {
         msg.channel.bulkDelete(1).then(msg.channel.send(`안티매터 봇이 1.0버전으로 업데이트 되었습니다!\n봇 24시간 구동을 시작합니다.`))
@@ -85,46 +82,39 @@ client.on("message", msg => {
         msg.channel.send("지금 막 사용하신 업뎃내역 명령어가 추가됩니다.")
         msg.channel.send("갸변저항 명령어가 개편되며, 갸변 저항 노래를 들을 수 있는 기능이 추가됩니다. >help에서 더 알아볼 수 있습니다.")
         msg.channel.send("청소흔적없이 명령어가 삭제됩니다.")
-        console.log ('update announcement sent')
     }
     if (command === "아바타") {
         msg.reply(msg.author.displayAvatarURL());
-        console.log ('>아바타 returned')
     }
     if (command === "멍청이") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`그것은 바로 영레였네요!`)
         msg.reply(embed)
-        console.log ('>멍청이 returned')
     }
     if (command === "안티매터") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`https://ivark.github.io/`)
         msg.reply(embed)
-        console.log ('>안티매터 returned')
     }
     if (command === "dixdick") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`https://docs.google.com/document/d/1hf-7PVbFCfcgPxxHuVzS5PDZx1N2tRfJfVJ4cskPWYY/edit?usp=sharing`)
         msg.reply(embed)
-        console.log ('>dixdick returned')
     }
     if (command === "아") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`그렇네!`)
         msg.reply(embed)
-        console.log ('>아 returned')
     }
     if (command === "오") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`예!`)
         msg.reply(embed)
-        console.log ('>오 returned')
     }
     if (command === "갸변저항") {
         var embed = new Discord.MessageEmbed()
@@ -135,7 +125,6 @@ client.on("message", msg => {
         .addField('sd-byunbyunbyun', '>gyabyun-4', true)
         .addField('노래 끝내기', '>stop', true)
         msg.reply(embed);
-        console.log ('>갸변저항 returned')
     }
     if (command === "gyabyun-1") {
         const voiceChannel = msg.member.voice.channel;
@@ -145,7 +134,6 @@ client.on("message", msg => {
             );
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
-            console.log ('>갸변저항 returned')
             return msg.channel.send(
                 "I need the permissions to join and speak in your voice channel!"
             );
@@ -155,7 +143,6 @@ client.on("message", msg => {
                 connection.play('./sendfile/Aleph-Byun.mp3');
                 for (const connection of client.voice.connections.values()) {
             }
-                console.log ('music is on')
             })
         
     }
@@ -229,21 +216,18 @@ client.on("message", msg => {
             .setColor("DEFAULT")
             .setDescription(`???: 아 얘들아 A형을 누가 90점을 못 맞니\n¿¿¿: 마음이 아프다`)
         msg.reply(embed)
-        console.log ('>a반 returned')
     }
     if (command === "b반") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`¿¿¿: 아 얘들아 A형을 누가 40점을 못 맞니\n???: 마음이 아프다`)
         msg.reply(embed)
-        console.log ('>b반 returned')
     }
     if (command === "c반") {
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
             .setDescription(`¿¿¿: 오로나변씨 기원\n???: 안돼!`)
         msg.reply(embed)
-        console.log ('>c반 returned')
     }
     if (command === "무야호") {
         var embed = new Discord.MessageEmbed()
@@ -251,11 +235,9 @@ client.on("message", msg => {
             .setThumbnail('https://cdn.discordapp.com/attachments/772338297280135178/830965854954848286/l_2021031401001628900137951.png')
             .setDescription(`그만큼 안티매터가 좋으시다는거지..?`)
         msg.reply(embed)
-        console.log ('>무야호 returned')
     }
     if (command === "pi") {
         msg.channel.send({files: ['./sendfile/314159.txt']});
-        console.log ('>pi returned')
     }
     if (command === `청소`) { // 만약에 메세지 내용이 청소라면?
         if (!args[0]) {
@@ -274,7 +256,6 @@ client.on("message", msg => {
             .setDescription(`성공적으로 ${args[0]}개 만큼 메세지를 삭제하였습니다!`)
         msg.reply(embed)
         }
-        console.log ('>청소 returned')
     }
     if (command === `삭제`) { 
         if (!args[0]) {
@@ -289,20 +270,16 @@ client.on("message", msg => {
         else {
         msg.channel.bulkDelete(args[0])
         }
-        console.log ('>청소 returned')
     }
     if (command === "힌트1-1") {
         msg.channel.send("브레인리그 건물 옥상에서 넘어지면, 얼굴은 경기과고 정문까지 닿고도 7km을 더 간다죠?");
-        console.log ('hint11 returned')
     }
     if (command === "힌트1-2") {
         msg.channel.send("계산하면 50km 나와요, 그 정도 계산도 못해요?")
         msg.channel.send("아무튼, 목길이 50km이라니... 대단하네요.");
-        console.log ('hint12 returned')
     }
     if (command === "힌트1-3") {
         msg.channel.send("목길이 50킬로미터!");
-        console.log ('hint13 returned')
     }
     if (command === "변목길이50킬로미터") {
         msg.channel.send("진짜 대단한 거 같아요, 저 정도면 서있는 것만으로 하체운동 되겠어요. 근데 어떻게 일어나죠?")
@@ -311,15 +288,12 @@ client.on("message", msg => {
     }
     if (command === "힌트2-1") {
         msg.channel.send("유튜브 봐요? 요즘drz인지 뭐시기인지가 되게 재밌던데,");
-        console.log ('hint21 returned')
     }
     if (command === "힌트2-2") {
         msg.channel.send("구독이랑 좋아요도 눌렀고 알림설정도 했어요.");
-        console.log ('hint22 returned')
     }
     if (command === "힌트2-3") {
         msg.channel.send("힌트는 2개에요, easterhelp를 봤어야죠.");
-        console.log ('hint23 returned')
     }
     if (command === "변튜브구독과좋아요알림설정") {
         msg.channel.send("그 롤하는 영상도 꼭 보세요, 화질은 구려도 꽤나 하는 것 같아요.")
@@ -329,15 +303,12 @@ client.on("message", msg => {
     }
     if (command === "힌트3-1") {
         msg.channel.send("찌리찌리찌리찌리찌리찌리");
-        console.log ('hint31 returned')
     }
     if (command === "힌트3-2") {
         msg.channel.send("찌리 * 6")
-        console.log ('hint32 returned')
     }
     if (command === "힌트3-3") {
         msg.channel.send("(갸범의 눈이 0.5mm 정도로 작아진다! ㅡㅡ)");
-        console.log ('hint33 returned')
     }
     if (command === "샤프심만한눈") {
         msg.channel.send("찌리리 눈!")
@@ -347,15 +318,12 @@ client.on("message", msg => {
     }
     if (command === "힌트4-1") {
         msg.channel.send("이시국에 신차난디아로 놀러왔는데요,");
-        console.log ('hint41 returned')
     }
     if (command === "힌트4-2") {
         msg.channel.send("뭔가 마음이 아프네요...");
-        console.log ('hint42 returned')
     }
     if (command === "힌트4-3") {
         msg.channel.send("...뭔가 방광의 크기가 줄어들고 있는 느낌?");
-        console.log ('hint43 returned')
     }
     if (command === "didicdicdicdickdic") {
         msg.channel.send("디딕 딕딕 디크딕!")
@@ -372,8 +340,60 @@ client.on("message", msg => {
         console.log ('Easter Egg No.5 Found!')
     }
     if (command === "759483208452379025738904") {
-        msg.reply("제 0 번 이스터에그를 찾으셨습니다!") ;
+        msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
         console.log ('Easter Egg No.0 Found!')
+    }
+    if (command === "bot_runtime_test") {
+        msg.channel.send("봇 안티매터의 테스트를 시작하겠습니다.\n음성채널에 들어가 주신 후 >testcontinue1_(비밀번호) 를 작성하십시오.")
+        msg.channel.send("테스트는 Annyeong1 본채널의 #C4에서 진행됩니다.")
+    }
+    if (command === "testcontinue1_9578043234218970547280395734892034218679431926876089735436094578") {
+        msg.channel.bulkDelete(4)
+        hook.send(">변")
+        hook.send(">help")
+        hook.send(">help-easter")
+        hook.send(">업뎃내역")
+        hook.send(">아바타")
+        hook.send(">멍청이")
+        hook.send(">안티매터")
+        hook.send(">dixdick")
+        hook.send(">아")
+        hook.send(">오")
+        hook.send(">갸변저항")
+        hook.send(">a반")
+        hook.send(">b반")
+        hook.send(">c반")
+        hook.send(">무야호")
+        hook.send(">pi")
+        hook.send(">힌트1-1")
+        hook.send(">힌트1-2")
+        hook.send(">힌트1-3")
+        hook.send(">힌트2-1")
+        hook.send(">힌트2-2")
+        hook.send(">힌트2-3")
+        hook.send(">힌트3-1")
+        hook.send(">힌트3-2")
+        hook.send(">힌트3-3")
+        hook.send(">힌트4-1")
+        hook.send(">힌트4-2")
+        hook.send(">힌트4-3")
+        msg.channel.send('이스터에그의 정답 제외 모든 단답 커맨드가 작동하였습니다. 해당 커맨드는 삭제 커맨드 테스트 시 테스트됩니다. 노래 커맨드를 시도합니다.')
+        hook.send(">gyabyun-1")
+        hook.send(">stop")
+        hook.send(">gyabyun-2")
+        hook.send(">stop")
+        hook.send(">gyabyun-3")
+        hook.send(">stop")
+        hook.send(">gyabyun-4")
+        hook.send(">stop")
+        msg.channel.send('노래 커맨드가 모두 작동하였습니다. 특수기능 커맨드를 작동합니다.')
+        hook.send(">변목길이50킬로미터")
+        hook.send('>변튜브구독과좋아요알림설정')
+        hook.send('>청소 5')
+        hook.send(">샤프심만한눈")
+        hook.send('>didicdicdicdickdic')
+        hook.send('>삭제 5')
+        msg.channel.send("테스트가 완료되었습니다.")
     }
 });
 
