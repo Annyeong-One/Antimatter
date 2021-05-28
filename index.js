@@ -352,7 +352,6 @@ client.on("message", msg => {
         hook.send(">변")
         hook.send(">help")
         hook.send(">help-easter")
-        hook.send(">업뎃내역")
         hook.send(">아바타")
         hook.send(">멍청이")
         hook.send(">안티매터")
@@ -393,6 +392,7 @@ client.on("message", msg => {
         hook.send(">샤프심만한눈")
         hook.send('>didicdicdicdickdic')
         hook.send('>삭제 5')
+        hook.send(">업뎃내역")
         msg.channel.send("테스트가 완료되었습니다.")
     }
 });
