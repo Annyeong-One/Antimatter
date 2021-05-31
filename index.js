@@ -126,6 +126,9 @@ client.on("message", msg => {
         .addField('노래 끝내기', '>stop', true)
         msg.reply(embed);
     }
+    if (command === "원서") {
+        msg.channel.send("http://www.jinhakapply.com/")
+    }
     if (command === "gyabyun-1") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
