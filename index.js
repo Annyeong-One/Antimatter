@@ -133,12 +133,12 @@ client.on("message", msg => {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
-                "You need to be in a voice channel to play music!"
+                "우선 음성채널에 들어가주세요!"
             );
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
             return msg.channel.send(
-                "I need the permissions to join and speak in your voice channel!"
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
             );
         }
         voiceChannel.join()
@@ -153,12 +153,12 @@ client.on("message", msg => {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
-                "You need to be in a voice channel to play music!"
+                "우선 음성채널에 들어가주세요!"
             );
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
             return msg.channel.send(
-                "I need the permissions to join and speak in your voice channel!"
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
             );
         }
         voiceChannel.join()
@@ -173,12 +173,12 @@ client.on("message", msg => {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
-                "You need to be in a voice channel to play music!"
+                "우선 음성채널에 들어가주세요!"
             );
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
             return msg.channel.send(
-                "I need the permissions to join and speak in your voice channel!"
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
             );
         }
         voiceChannel.join()
@@ -193,12 +193,12 @@ client.on("message", msg => {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
-                "You need to be in a voice channel to play music!"
+                "우선 음성채널에 들어가주세요!"
             );
         const permissions = voiceChannel.permissionsFor(msg.client.user);
         if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
             return msg.channel.send(
-                "I need the permissions to join and speak in your voice channel!"
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
             );
         }
         voiceChannel.join()
