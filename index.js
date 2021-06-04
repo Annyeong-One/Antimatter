@@ -223,7 +223,7 @@ client.on("message", msg => {
         }
         voiceChannel.join()
             .then(connection => {
-                connection.play('./sendfile/R.mp3');
+                connection.play('./sendfile/Narak.mp3');
                 for (const connection of client.voice.connections.values()) {
             }
             })
