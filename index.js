@@ -209,6 +209,26 @@ client.on("message", msg => {
             })
         
     }
+    if (command === "narak") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "음성채널에 안들어가기만 하면 채팅이 'NA-RAK! NA-RAK!'"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "음성 채널 참가 관련 권한이 부여되지 않아서 'NA-RAK! NA-RAK!'"
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/R.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
     if (command === "stop") {
         const voiceChannel = msg.member.voice.channel;
         voiceChannel.leave();
@@ -345,58 +365,6 @@ client.on("message", msg => {
     if (command === "759483208452379025738904") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
         console.log ('Easter Egg No.0 Found!')
-    }
-    if (command === "bot_runtime_test") {
-        msg.channel.send("봇 안티매터의 테스트를 시작하겠습니다.\n음성채널에 들어가 주신 후 >testcontinue1_(비밀번호) 를 작성하십시오.")
-        msg.channel.send("테스트는 Annyeong1 본채널의 #C4에서 진행됩니다.")
-    }
-    if (command === "testcontinue1_9578043234218970547280395734892034218679431926876089735436094578") {
-        msg.channel.bulkDelete(4)
-        hook.send(">변")
-        hook.send(">help")
-        hook.send(">help-easter")
-        hook.send(">아바타")
-        hook.send(">멍청이")
-        hook.send(">안티매터")
-        hook.send(">dixdick")
-        hook.send(">아")
-        hook.send(">오")
-        hook.send(">갸변저항")
-        hook.send(">a반")
-        hook.send(">b반")
-        hook.send(">c반")
-        hook.send(">무야호")
-        hook.send(">pi")
-        hook.send(">힌트1-1")
-        hook.send(">힌트1-2")
-        hook.send(">힌트1-3")
-        hook.send(">힌트2-1")
-        hook.send(">힌트2-2")
-        hook.send(">힌트2-3")
-        hook.send(">힌트3-1")
-        hook.send(">힌트3-2")
-        hook.send(">힌트3-3")
-        hook.send(">힌트4-1")
-        hook.send(">힌트4-2")
-        hook.send(">힌트4-3")
-        msg.channel.send('이스터에그의 정답 제외 모든 단답 커맨드가 작동하였습니다. 해당 커맨드는 삭제 커맨드 테스트 시 테스트됩니다. 노래 커맨드를 시도합니다.')
-        hook.send(">gyabyun-1")
-        hook.send(">stop")
-        hook.send(">gyabyun-2")
-        hook.send(">stop")
-        hook.send(">gyabyun-3")
-        hook.send(">stop")
-        hook.send(">gyabyun-4")
-        hook.send(">stop")
-        msg.channel.send('노래 커맨드가 모두 작동하였습니다. 특수기능 커맨드를 작동합니다.')
-        hook.send(">변목길이50킬로미터")
-        hook.send('>변튜브구독과좋아요알림설정')
-        hook.send('>청소 5')
-        hook.send(">샤프심만한눈")
-        hook.send('>didicdicdicdickdic')
-        hook.send('>삭제 5')
-        hook.send(">업뎃내역")
-        msg.channel.send("테스트가 완료되었습니다.")
     }
 });
 
