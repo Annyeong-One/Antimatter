@@ -229,6 +229,26 @@ client.on("message", msg => {
             })
         
     }
+    if (command === "byun") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "음성챗 안들어가고 음성명령어 쓰면 변됨"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "음성 채널 참가 관련 권한이 부여되지 않았는데 명령어 쓰면 변됨"
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/Byun.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
     if (command === "stop") {
         const voiceChannel = msg.member.voice.channel;
         voiceChannel.leave();
