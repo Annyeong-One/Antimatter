@@ -10,8 +10,8 @@ const queue = new Map();
 
 
 client.on("ready", () => { 
-    console.log(`successfully logged in to: ${client.user.tag}, bot is deployed`);
-    console.log(`ping: ${client.ws.ping}`)
+    hook.send(`successfully logged in to: ${client.user.tag}, bot is deployed`);
+    hook.send(`ping: ${client.ws.ping}`)
 });
 
 client.on('guildMemberAdd', member => {
@@ -28,7 +28,7 @@ client.on("message", msg => {
     var args = msg.content.slice(prefix.length).trim().split(/ +/g); // argument(args) split
     var command = args.shift().toLowerCase();
     const serverQueue = queue.get(msg.guild.id);
-    console.log(`command starting, ping: ${client.ws.ping}`)
+    hook.send(`command starting, ping: ${client.ws.ping}`)
     if (command === `핑`) { // 핑확인
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
@@ -327,7 +327,7 @@ client.on("message", msg => {
     if (command === "변목길이50킬로미터") {
         msg.channel.send("진짜 대단한 거 같아요, 저 정도면 서있는 것만으로 하체운동 되겠어요. 근데 어떻게 일어나죠?")
         msg.reply("제 1 번 이스터에그를 찾으셨습니다!") ;
-        console.log ('Easter Egg No.1 Found!')
+        hook.send ('Easter Egg No.1 Found!')
     }
     if (command === "힌트2-1") {
         msg.channel.send("유튜브 봐요? 요즘drz인지 뭐시기인지가 되게 재밌던데,");
@@ -342,7 +342,7 @@ client.on("message", msg => {
         msg.channel.send("그 롤하는 영상도 꼭 보세요, 화질은 구려도 꽤나 하는 것 같아요.")
         msg.channel.send("*해당 발언은 안티매터봇이나 Annyeong1#8912와 관련이 없어요. ~~저는 롤을 못하기 때문이죠.~~*")
         msg.reply("제 2 번 이스터에그를 찾으셨습니다!");
-        console.log ('Easter Egg No.2 Found!')
+        hook.send ('Easter Egg No.2 Found!')
     }
     if (command === "힌트3-1") {
         msg.channel.send("찌리찌리찌리찌리찌리찌리");
@@ -357,7 +357,7 @@ client.on("message", msg => {
         msg.channel.send("찌리리 눈!")
         msg.channel.send("지이이이이이이이잉\n(샤프심만한 눈은 찌리리 눈 스킬 제6스킬이다.")
         msg.reply("제 3 번 이스터에그를 찾으셨습니다!") ;
-        console.log ('Easter Egg No.3 Found!')
+        hook.send ('Easter Egg No.3 Found!')
     }
     if (command === "힌트4-1") {
         msg.channel.send("이시국에 신차난디아로 놀러왔는데요,");
@@ -372,7 +372,7 @@ client.on("message", msg => {
         msg.channel.send("디딕 딕딕 디크딕!")
         msg.channel.send("화장실에 다녀왔아요! 뭔가 저기 저 키 작은 봇이 된 느낌이 들어요! @Young-re#3263")
         msg.reply("제 4 번 이스터에그를 찾으셨습니다!") ;
-        console.log ('Easter Egg No.4 Found!')
+        hook.send ('Easter Egg No.4 Found!')
     }
     if (command === "78590423") {
         msg.channel.send("호오......")
@@ -380,11 +380,11 @@ client.on("message", msg => {
         msg.channel.send("하지만 여기서 더 가려면 어떻게 해야 할까?")
         msg.channel.send("011010000111010101101000001011000010000001101001011001000110101100100000011000100111010101110100001000000101010001000111010110100111001001000100010110010111000001110010010010100101111101011001")
         msg.reply("제 ? 번 이스터에그를 찾지 못하셨습니다?") ;
-        console.log ('Easter Egg No.5 Found!')
+        hook.send ('Easter Egg No.5 Found!')
     }
     if (command === "759483208452379025738904") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
-        console.log ('Easter Egg No.0 Found!')
+        hook.send ('Easter Egg No.0 Found!')
     }
 });
 
