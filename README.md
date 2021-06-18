@@ -15,4 +15,6 @@ Here are some links. 몇몇 링크입니다.
 >Source code of Antimatter-Beta is also public on / Antimatter-Beta 역시 여기서 누구나 볼 수 있습니다:
 >https://github.com/Annyeong-One/Antimatter-Beta \
 >Google Forms for accessing (means watching, but not editing) sourcecode / 현 안티매터의 코드를 열람하려면 이 forms를 작성해야 합니다:
->https://forms.gle/WJXFaocFt7iHiN758 
+>https://forms.gle/WJXFaocFt7iHiN758 \
+>Bot invite link (runs 24/7) / 봇 초대 링크 (상시 구동):
+>https://discord.com/api/oauth2/authorize?client_id=811957830110019615&permissions=8&scope=bot
