@@ -58,6 +58,7 @@ client.on("message", msg => {
         .addField('0. 도움', '업뎃내역\nhelp-easter', true)
         .addField('1. 기능', '핑\n청소\n삭제\n아바타', true)
         .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
+        .addField('3. 깃허브', 'https://forms.gle/WJXFaocFt7iHiN758', true)
         msg.reply(embed) // reply msg
     }
     if (command === "help-easter") {
