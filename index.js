@@ -387,6 +387,9 @@ client.on("message", msg => {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
         hook.send ('Easter Egg No.0 Found!')
     }
+    if (command === "칭찬") {
+        msg.reply("칭찬!")
+    }
 });
 
 client.login(config.token)
