@@ -315,6 +315,10 @@ client.on("message", msg => {
         msg.channel.bulkDelete(args[0])
         }
     }
+    if (command === "투표찬반") {
+        msg.react('⬆')
+        msg.react('⬇')
+    }
     if (command === "힌트1-1") {
         msg.channel.send("브레인리그 건물 옥상에서 넘어지면, 얼굴은 경기과고 정문까지 닿고도 7km을 더 간다죠?");
     }
@@ -386,9 +390,6 @@ client.on("message", msg => {
     if (command === "759483208452379025738904") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
         hook.send ('Easter Egg No.0 Found!')
-    }
-    if (command === "칭찬") {
-        msg.reply("칭찬!")
     }
 });
 
