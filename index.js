@@ -127,9 +127,6 @@ client.on("message", msg => {
         .addField('노래 끝내기', '>stop', true)
         msg.reply(embed);
     }
-    if (command === "원서") {
-        msg.channel.send("http://www.jinhakapply.com/")
-    }
     if (command === "gyabyun-1") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
@@ -315,9 +312,9 @@ client.on("message", msg => {
         msg.channel.bulkDelete(args[0])
         }
     }
-    if (command === "투표찬반") {
-        msg.react('⬆')
-        msg.react('⬇')
+    if (command === "투표") {
+        msg.react('1')
+        msg.react('2')
     }
     if (command === "힌트1-1") {
         msg.channel.send("브레인리그 건물 옥상에서 넘어지면, 얼굴은 경기과고 정문까지 닿고도 7km을 더 간다죠?");
