@@ -313,8 +313,8 @@ client.on("message", msg => {
         }
     }
     if (command === "투표") {
-        msg.react('1')
-        msg.react('2')
+        msg.react('↑')
+        msg.react('↓')
     }
     if (command === "힌트1-1") {
         msg.channel.send("브레인리그 건물 옥상에서 넘어지면, 얼굴은 경기과고 정문까지 닿고도 7km을 더 간다죠?");
