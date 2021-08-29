@@ -76,7 +76,7 @@ client.on("message", msg => {
     }
     if (command === "업뎃내역") {
         msg.channel.bulkDelete(1).then(msg.channel.send(`안티매터 봇이 1.1버전으로 업데이트 되었습니다!`))
-        msg.channel.send("5번째 이스터에그가 완성되었습니다만, 아직 4번도 뚫리지 않았습니다. 그보다도 1번은 아무도 안찾아주")
+        msg.channel.send("5번째 이스터에그가 완성되었습니다만, 아직 4번도 뚫리지 않았습니다. 그보다도 0번은 아무도 안찾아주")
         msg.channel.send("갸변저항에 5번, 6번 트랙이 추가되었습니다.")
         msg.channel.send("Narak, Byun 명령어로 각 소리를 들을 수 있습니다.")
         msg.channel.send("투표 명령어가 추가되었습니다. 찬반 투표를 지원합니다.")
