@@ -56,7 +56,7 @@ client.on("message", msg => {
         .setDescription('안티매터봇의 명령어 목록입니다.')
         .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
         .addField('0. 도움', '업뎃내역\nhelp-easter', true)
-        .addField('1. 기능', '핑\n청소\n삭제\n아바타', true)
+        .addField('1. 기능', '핑\n청소\n삭제\n아바타\n갸변저항\n투표', true)
         .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
         .addField('3. 깃허브', 'https://forms.gle/WJXFaocFt7iHiN758', true)
         msg.reply(embed) // reply msg
@@ -71,18 +71,15 @@ client.on("message", msg => {
         .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
         .addField('1. 형식', '접두사 이후 띄어쓰기가 없는 단어입니다.', true)
         .addField('2. 힌트 보기', '>힌트a-b를 사용하여 a번째 이스터에그의\nb번째 힌트를 확인할 수 있습니다.\n띄어쓰기는 하지 않아야 합니다.', true)
-        .addField('3. 목록', '0번 이스터에그 - WW91bmdyZS1pcy1pZGlvdC03ODU5MDQyMw==, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18개, 힌트 3개', true)
+        .addField('3. 목록', '0번 이스터에그 - WW91bmdyZS1pcy1pZGlvdC03ODU5MDQyMw==, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18글자, 힌트 3개\n5번 이스터에그 - 글자수 한글/영문혼합 총4글자, 힌트 3개', true)
         msg.reply(embed) // reply msg
     }
     if (command === "업뎃내역") {
-        msg.channel.bulkDelete(1).then(msg.channel.send(`안티매터 봇이 1.0버전으로 업데이트 되었습니다!\n봇 24시간 구동을 시작합니다.`))
-        msg.channel.send("이스터에그 및 이스터에그용 힌트, >청소 명령어 실패, 업뎃내역 등 일부를 제외한 명령어가 임베드됩니다.")
-        msg.channel.send("도배 명령어가 삭제됩니다.")
-        msg.channel.send("chudnovsky 명령어가 삭제됩니다.")
-        msg.channel.send("dixdick 명령어가 개편됩니다.")
-        msg.channel.send("지금 막 사용하신 업뎃내역 명령어가 추가됩니다.")
-        msg.channel.send("갸변저항 명령어가 개편되며, 갸변 저항 노래를 들을 수 있는 기능이 추가됩니다. >help에서 더 알아볼 수 있습니다.")
-        msg.channel.send("청소흔적없이 명령어가 삭제됩니다.")
+        msg.channel.bulkDelete(1).then(msg.channel.send(`안티매터 봇이 1.1버전으로 업데이트 되었습니다!`))
+        msg.channel.send("5번째 이스터에그가 완성되었습니다만, 아직 4번도 뚫리지 않았습니다. 그보다도 1번은 아무도 안찾아주")
+        msg.channel.send("갸변저항에 5번, 6번 트랙이 추가되었습니다.")
+        msg.channel.send("Narak, Byun 명령어로 각 소리를 들을 수 있습니다.")
+        msg.channel.send("투표 명령어가 추가되었습니다. 찬반 투표를 지원합니다.")
     }
     if (command === "아바타") {
         msg.reply(msg.author.displayAvatarURL());
@@ -124,6 +121,8 @@ client.on("message", msg => {
         .addField('Byuntapper', '>gyabyun-2', true)
         .addField('R', '>gyabyun-3', true)
         .addField('sd-byunbyunbyun', '>gyabyun-4', true)
+        .addField('Narakseeker', '>gyabyun-5', true)
+        .addField('Oshama ScramByun!', '>gyabyun-6', true)
         .addField('노래 끝내기', '>stop', true)
         msg.reply(embed);
     }
@@ -202,6 +201,46 @@ client.on("message", msg => {
         voiceChannel.join()
             .then(connection => {
                 connection.play('./sendfile/R.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
+    if (command === "gyabyun-5") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "우선 음성채널에 들어가주세요!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/Narakseeker.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
+    if (command === "gyabyun-6") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "우선 음성채널에 들어가주세요!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/Oshama.mp3');
                 for (const connection of client.voice.connections.values()) {
             }
             })
@@ -376,15 +415,30 @@ client.on("message", msg => {
         msg.reply("제 4 번 이스터에그를 찾으셨습니다!") ;
         hook.send ('Easter Egg No.4 Found!')
     }
+    if (command === "힌트5-1") {
+        msg.channel.send("x ck! x ck!");
+    }
+    if (command === "힌트5-2") {
+        msg.channel.send("근데 그분이 신 말고도 다른 것도 한다고 들었어요.");
+    }
+    if (command === "힌트5-3") {
+        msg.channel.send("무슨 영상이라 했던 것 같은데...");
+    }
+    if (command === "AV신찬") {
+        msg.channel.send("(방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 또는 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)")
+        msg.channel.send("아, 그분 그런 것도 해요?")
+        msg.reply("제 5 번 이스터에그를 찾으셨습니다!") ;
+        hook.send ('Easter Egg No.5 Found!')
+    }
     if (command === "78590423") {
         msg.channel.send("호오......")
         msg.channel.send("이걸 찾누....")
         msg.channel.send("하지만 여기서 더 가려면 어떻게 해야 할까?")
         msg.channel.send("011010000111010101101000001011000010000001101001011001000110101100100000011000100111010101110100001000000101010001000111010110100111001001000100010110010111000001110010010010100101111101011001")
         msg.reply("제 ? 번 이스터에그를 찾지 못하셨습니다?") ;
-        hook.send ('Easter Egg No.5 Found!')
+        hook.send ('Easter Egg No.? PreFound!')
     }
-    if (command === "759483208452379025738904") {
+    if (command === "rmfjsk_snrnsrksms_ckwrp_ehldjTek") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
         hook.send ('Easter Egg No.0 Found!')
     }
