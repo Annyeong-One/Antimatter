@@ -8,7 +8,6 @@ const client = new Discord.Client();
 const prefix = ">"
 const queue = new Map();
 
-
 client.on("ready", () => { 
     hook.send(`successfully logged in to: ${client.user.tag}, bot is deployed`);
     hook.send(`ping: ${client.ws.ping}`)
@@ -21,6 +20,9 @@ client.on('guildMemberAdd', member => {
     // Send the msg, mentioning the member
     channel.send(`${member}님, 서버에 오신 것을 환영해요!`);
 });
+
+
+
 //from here is command lists
 client.on("message", msg => {
     if (!msg.guild) return;
@@ -29,10 +31,12 @@ client.on("message", msg => {
     var command = args.shift().toLowerCase();
     const serverQueue = queue.get(msg.guild.id);
     hook.send(`command starting, ping: ${client.ws.ping}`)
+
+
     if (command === `핑`) { // 핑확인
         var embed = new Discord.MessageEmbed()
             .setColor("DEFAULT")
-            .setDescription(`퐁! 현재 Antimatter의 핑은 ${client.ws.ping}ms입니다.`)
+            .setDescription(`현재 Antimatter의 핑은 ${client.ws.ping}ms입니다.`)
         msg.reply(embed)
     }
     if (command === `변`) {
@@ -117,16 +121,16 @@ client.on("message", msg => {
     if (command === "갸변저항") {
         var embed = new Discord.MessageEmbed()
         .setTitle("GyaByun Resistor 노래 모음")
-        .addField('Aleph Byun', '>gyabyun-1', true)
-        .addField('Byuntapper', '>gyabyun-2', true)
-        .addField('R', '>gyabyun-3', true)
-        .addField('sd-byunbyunbyun', '>gyabyun-4', true)
-        .addField('Narakseeker', '>gyabyun-5', true)
-        .addField('Oshama ScramByun!', '>gyabyun-6', true)
+        .addField('Aleph Byun', '>gyabyun_1', true)
+        .addField('Byuntapper', '>gyabyun_2', true)
+        .addField('R', '>gyabyun_3', true)
+        .addField('sd-byunbyunbyun', '>gyabyun_4', true)
+        .addField('Narakseeker', '>gyabyun_5', true)
+        .addField('Oshama ScramByun!', '>gyabyun_6', true)
         .addField('노래 끝내기', '>stop', true)
         msg.reply(embed);
     }
-    if (command === "gyabyun-1") {
+    if (command === "gyabyun_1") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
@@ -146,7 +150,7 @@ client.on("message", msg => {
             })
         
     }
-    if (command === "gyabyun-2") {
+    if (command === "gyabyun_2") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
@@ -166,7 +170,7 @@ client.on("message", msg => {
             })
         
     }
-    if (command === "gyabyun-3") {
+    if (command === "gyabyun_3") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
@@ -186,7 +190,7 @@ client.on("message", msg => {
             })
         
     }
-    if (command === "gyabyun-4") {
+    if (command === "gyabyun_4") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
@@ -206,7 +210,7 @@ client.on("message", msg => {
             })
         
     }
-    if (command === "gyabyun-5") {
+    if (command === "gyabyun_5") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
@@ -226,7 +230,7 @@ client.on("message", msg => {
             })
         
     }
-    if (command === "gyabyun-6") {
+    if (command === "gyabyun_6") {
         const voiceChannel = msg.member.voice.channel;
         if (!voiceChannel)
             return msg.channel.send(
@@ -425,8 +429,8 @@ client.on("message", msg => {
         msg.channel.send("무슨 영상이라 했던 것 같은데...");
     }
     if (command === "AV신찬") {
-        msg.channel.send("(방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 또는 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)")
-        msg.channel.send("아, 그분 그런 것도 해요?")
+        msg.channel.send("에? (방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)에요?\n그럼 (방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)하는 사람들이랑 같이")
+        msg.channel.send("(방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)같은 것도 하는 줄 몰랐어요. 그 분 (방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)")
         msg.reply("제 5 번 이스터에그를 찾으셨습니다!") ;
         hook.send ('Easter Egg No.5 Found!')
     }
