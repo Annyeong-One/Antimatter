@@ -9,7 +9,7 @@ const prefix = ">"
 const queue = new Map();
 
 client.on("ready", () => { 
-    hook.send(`successfully logged in to: ${client.user.tag}, bot is deployed`);
+    hook.send(`successfully logged in (refreshed) to: ${client.user.tag}, bot is deployed`);
     hook.send(`ping: ${client.ws.ping}`)
 });
 
@@ -27,7 +27,7 @@ client.on('guildMemberAdd', member => {
 client.on("message", msg => {
     if (!msg.guild) return;
     if (msg.content.indexOf(prefix) !== 0) return; // Prefix?
-    var args = msg.content.slice(prefix.length).trim().split(/ +/g); // argument(args) split
+    var args = msg.content.slice(prefix.length).trim().split(/ +/g); 
     var command = args.shift().toLowerCase();
     const serverQueue = queue.get(msg.guild.id);
     hook.send(`command starting, ping: ${client.ws.ping}`)
@@ -45,7 +45,7 @@ client.on("message", msg => {
             .setDescription("뭐 하는 거야!") // title description
             .setColor("GOLD") // can use hex
             .setFooter("이런 것도 있누") // footer
-            .setThumbnail("https://cdn.discordapp.com/attachments/743278181112610828/812323526287556658/20210212_141937.jpg") // 여기는 임베드에서 썸네일로 불려옵니다! (URL를 넣어가 경로를 기입하면 그 경로에 있는 이미지를 불러와 썸네일로 이용되요!)
+            .setThumbnail("https://cdn.discordapp.com/attachments/743278181112610828/812323526287556658/20210212_141937.jpg")
             .setImage("https://cdn.discordapp.com/attachments/743278181112610828/812323525863669800/7e41d26.jpg") // mainimg
             .setTimestamp() // empty for current time, dont fill
             .addField("오 예", "미터법이 최고지") // description
@@ -440,7 +440,7 @@ client.on("message", msg => {
         msg.channel.send("하지만 여기서 더 가려면 어떻게 해야 할까?")
         msg.channel.send("011010000111010101101000001011000010000001101001011001000110101100100000011000100111010101110100001000000101010001000111010110100111001001000100010110010111000001110010010010100101111101011001")
         msg.reply("제 ? 번 이스터에그를 찾지 못하셨습니다?") ;
-        hook.send ('Easter Egg No.? PreFound!')
+        hook.send ('Easter Egg No.0 PreFound!')
     }
     if (command === "rmfjsk_snrnsrksms_ckwrp_ehldjTek") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
