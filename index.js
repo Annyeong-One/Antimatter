@@ -127,8 +127,14 @@ client.on("message", msg => {
         .addField('sd-byunbyunbyun', '>gyabyun_4', true)
         .addField('Narakseeker', '>gyabyun_5', true)
         .addField('Oshama ScramByun!', '>gyabyun_6', true)
+        .addField('Pictured as Ziriri Noon', '>gyabyun_7', true)
+        .addField('Makings', '>gyabyun_making_(숫자)', true)
         .addField('노래 끝내기', '>stop', true)
+        .addField('makings가 지원되는 노래는 다음과 같습니다.', '7, ', true)
         msg.reply(embed);
+    }
+    if (command === "gyabyun_making_7") {
+        msg.channel.send({files: ['./sendfile/making7.txt']});
     }
     if (command === "gyabyun_1") {
         const voiceChannel = msg.member.voice.channel;
@@ -245,6 +251,26 @@ client.on("message", msg => {
         voiceChannel.join()
             .then(connection => {
                 connection.play('./sendfile/Oshama.mp3');
+                for (const connection of client.voice.connections.values()) {
+            }
+            })
+        
+    }
+    if (command === "gyabyun_7") {
+        const voiceChannel = msg.member.voice.channel;
+        if (!voiceChannel)
+            return msg.channel.send(
+                "우선 음성채널에 들어가주세요!"
+            );
+        const permissions = voiceChannel.permissionsFor(msg.client.user);
+        if (!permissions.has("CONNECT") || !permissions.has("SPEAK")) {
+            return msg.channel.send(
+                "음성 채널 참가 관련 권한이 부여되지 않았어요. 서버장에게 다시 초대를 문의해주세요."
+            );
+        }
+        voiceChannel.join()
+            .then(connection => {
+                connection.play('./sendfile/Pictured.mp3');
                 for (const connection of client.voice.connections.values()) {
             }
             })
