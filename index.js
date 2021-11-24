@@ -8,7 +8,7 @@ const client = new Discord.Client();
 const prefix = ">"
 const queue = new Map();
 
-client.on("ready", () => { 
+client.on("ready", () => {
     hook.send(`successfully logged in (refreshed) to: ${client.user.tag}, bot is deployed`);
     hook.send(`ping: ${client.ws.ping}`)
 });
@@ -27,7 +27,7 @@ client.on('guildMemberAdd', member => {
 client.on("message", msg => {
     if (!msg.guild) return;
     if (msg.content.indexOf(prefix) !== 0) return; // Prefix?
-    var args = msg.content.slice(prefix.length).trim().split(/ +/g); 
+    var args = msg.content.slice(prefix.length).trim().split(/ +/g);
     var command = args.shift().toLowerCase();
     const serverQueue = queue.get(msg.guild.id);
     hook.send(`command starting, ping: ${client.ws.ping}`)
@@ -41,7 +41,7 @@ client.on("message", msg => {
     }
     if (command === `변`) {
         var embed = new Discord.MessageEmbed()
-            .setTitle("변!") 
+            .setTitle("변!")
             .setDescription("뭐 하는 거야!") // title description
             .setColor("GOLD") // can use hex
             .setFooter("이런 것도 있누") // footer
@@ -53,29 +53,29 @@ client.on("message", msg => {
     }
     if (command === "help") {
         var embed = new Discord.MessageEmbed()
-        .setColor('RANDOM')
-        .setTitle('Antimatter 도움말')
-        .setURL('https://discord.js.org/')
-        .setAuthor('Annyeong1#8912', 'https://media.discordapp.net/attachments/805963165229776951/811130967871717430/peter20071203.gif', 'https://discord.js.org')
-        .setDescription('안티매터봇의 명령어 목록입니다.')
-        .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
-        .addField('0. 도움', '업뎃내역\nhelp-easter', true)
-        .addField('1. 기능', '핑\n청소\n삭제\n아바타\n갸변저항\n투표', true)
-        .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
-        .addField('3. 깃허브', 'https://forms.gle/WJXFaocFt7iHiN758', true)
+            .setColor('RANDOM')
+            .setTitle('Antimatter 도움말')
+            .setURL('https://discord.js.org/')
+            .setAuthor('Annyeong1#8912', 'https://media.discordapp.net/attachments/805963165229776951/811130967871717430/peter20071203.gif', 'https://discord.js.org')
+            .setDescription('안티매터봇의 명령어 목록입니다.')
+            .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
+            .addField('0. 도움', '업뎃내역\nhelp-easter', true)
+            .addField('1. 기능', '핑\n청소\n삭제\n아바타\n갸변저항\n투표', true)
+            .addField('2. 말주고받기', '변\n무야호\n멍청이\n안티매터\n아\n오\ndixdick\na반\nb반\nc반\npi', true)
+            .addField('3. 깃허브', 'https://forms.gle/WJXFaocFt7iHiN758', true)
         msg.reply(embed) // reply msg
     }
     if (command === "help-easter") {
         var embed = new Discord.MessageEmbed()
-        .setColor('RANDOM')
-        .setTitle('Antimatter 이스터에그 도움말')
-        .setURL('https://discord.js.org/')
-        .setAuthor('Annyeong1#8912', 'https://media.discordapp.net/attachments/805963165229776951/811130967871717430/peter20071203.gif', 'https://discord.js.org')
-        .setDescription('이스터에그 총 4개, 발견된 것 3개')
-        .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
-        .addField('1. 형식', '접두사 이후 띄어쓰기가 없는 단어입니다.', true)
-        .addField('2. 힌트 보기', '>힌트a-b를 사용하여 a번째 이스터에그의\nb번째 힌트를 확인할 수 있습니다.\n띄어쓰기는 하지 않아야 합니다.', true)
-        .addField('3. 목록', '0번 이스터에그 - WW91bmdyZS1pcy1pZGlvdC03ODU5MDQyMw==, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18글자, 힌트 3개\n5번 이스터에그 - 글자수 한글/영문혼합 총4글자, 힌트 3개', true)
+            .setColor('RANDOM')
+            .setTitle('Antimatter 이스터에그 도움말')
+            .setURL('https://discord.js.org/')
+            .setAuthor('Annyeong1#8912', 'https://media.discordapp.net/attachments/805963165229776951/811130967871717430/peter20071203.gif', 'https://discord.js.org')
+            .setDescription('이스터에그 총 4개, 발견된 것 3개')
+            .setThumbnail('https://cdn.discordapp.com/attachments/805963165229776951/813049052685008936/Screenshot_20190301-090946.png')
+            .addField('1. 형식', '접두사 이후 띄어쓰기가 없는 단어입니다.', true)
+            .addField('2. 힌트 보기', '>힌트a-b를 사용하여 a번째 이스터에그의\nb번째 힌트를 확인할 수 있습니다.\n띄어쓰기는 하지 않아야 합니다.', true)
+            .addField('3. 목록', '0번 이스터에그 - WW91bmdyZS1pcy1pZGlvdC03ODU5MDQyMw==, 힌트 ???개\n1번 이스터에그 - 변목길이50킬로미터, 힌트 3개\n2번 이스터에그 - 변튜브구독과좋아요알림설정, 힌트 2개\n3번 이스터에그 - 샤프심만한눈, 힌트 3개\n4번 이스터에그 - 글자수 영문18글자, 힌트 3개\n5번 이스터에그 - 글자수 한글/영문혼합 총4글자, 힌트 3개', true)
         msg.reply(embed) // reply msg
     }
     if (command === "업뎃내역") {
@@ -120,21 +120,21 @@ client.on("message", msg => {
     }
     if (command === "갸변저항") {
         var embed = new Discord.MessageEmbed()
-        .setTitle("GyaByun Resistor 노래 모음")
-        .addField('Aleph Byun', '>gyabyun_1', true)
-        .addField('Byuntapper', '>gyabyun_2', true)
-        .addField('R', '>gyabyun_3', true)
-        .addField('sd-byunbyunbyun', '>gyabyun_4', true)
-        .addField('Narakseeker', '>gyabyun_5', true)
-        .addField('Oshama ScramByun!', '>gyabyun_6', true)
-        .addField('Pictured as Ziriri Noon', '>gyabyun_7', true)
-        .addField('Makings', '>gyabyun_making_(숫자)', true)
-        .addField('노래 끝내기', '>stop', true)
-        .addField('makings가 지원되는 노래는 다음과 같습니다.', '7, ', true)
+            .setTitle("GyaByun Resistor 노래 모음")
+            .addField('Aleph Byun', '>gyabyun_1', true)
+            .addField('Byuntapper', '>gyabyun_2', true)
+            .addField('R', '>gyabyun_3', true)
+            .addField('sd-byunbyunbyun', '>gyabyun_4', true)
+            .addField('Narakseeker', '>gyabyun_5', true)
+            .addField('Oshama ScramByun!', '>gyabyun_6', true)
+            .addField('Pictured as Ziriri Noon', '>gyabyun_7', true)
+            .addField('Makings', '>gyabyun_making_(숫자)', true)
+            .addField('노래 끝내기', '>stop', true)
+            .addField('makings가 지원되는 노래는 다음과 같습니다.', '7, ', true)
         msg.reply(embed);
     }
     if (command === "gyabyun_making_7") {
-        msg.channel.send({files: ['./sendfile/making7.txt']});
+        msg.channel.send({ files: ['./sendfile/making7.txt'] });
     }
     if (command === "gyabyun_1") {
         const voiceChannel = msg.member.voice.channel;
@@ -152,9 +152,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/Aleph-Byun.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "gyabyun_2") {
         const voiceChannel = msg.member.voice.channel;
@@ -172,9 +172,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/bbbyyyuuunnn.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "gyabyun_3") {
         const voiceChannel = msg.member.voice.channel;
@@ -192,9 +192,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/byuntapper.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "gyabyun_4") {
         const voiceChannel = msg.member.voice.channel;
@@ -212,9 +212,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/R.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "gyabyun_5") {
         const voiceChannel = msg.member.voice.channel;
@@ -232,9 +232,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/Narakseeker.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "gyabyun_6") {
         const voiceChannel = msg.member.voice.channel;
@@ -252,9 +252,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/Oshama.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "gyabyun_7") {
         const voiceChannel = msg.member.voice.channel;
@@ -272,9 +272,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/Pictured.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "narak") {
         const voiceChannel = msg.member.voice.channel;
@@ -292,9 +292,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/Narak.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "byun") {
         const voiceChannel = msg.member.voice.channel;
@@ -312,9 +312,9 @@ client.on("message", msg => {
             .then(connection => {
                 connection.play('./sendfile/Byun.mp3');
                 for (const connection of client.voice.connections.values()) {
-            }
+                }
             })
-        
+
     }
     if (command === "stop") {
         const voiceChannel = msg.member.voice.channel;
@@ -347,7 +347,7 @@ client.on("message", msg => {
         msg.reply(embed)
     }
     if (command === "pi") {
-        msg.channel.send({files: ['./sendfile/314159.txt']});
+        msg.channel.send({ files: ['./sendfile/314159.txt'] });
     }
     if (command === `청소`) { // 만약에 메세지 내용이 청소라면?
         if (!args[0]) {
@@ -360,14 +360,14 @@ client.on("message", msg => {
             msg.reply(`${args[0]}개씩이나 지울 일이 있어요? 최대 50개까지 지울 수 있어요!`) // undo if length > 10
         }
         else {
-        msg.channel.bulkDelete(args[0])
-        var embed = new Discord.MessageEmbed()
-            .setColor("DEFAULT")
-            .setDescription(`성공적으로 ${args[0]}개 만큼 메세지를 삭제하였습니다!`)
-        msg.reply(embed)
+            msg.channel.bulkDelete(args[0])
+            var embed = new Discord.MessageEmbed()
+                .setColor("DEFAULT")
+                .setDescription(`성공적으로 ${args[0]}개 만큼 메세지를 삭제하였습니다!`)
+            msg.reply(embed)
         }
     }
-    if (command === `삭제`) { 
+    if (command === `삭제`) {
         if (!args[0]) {
             msg.reply("청소할 만큼의 값을 >청소 10 과 같이 정수로 적어주세요!") // undo if empty
         }
@@ -378,7 +378,7 @@ client.on("message", msg => {
             msg.reply(`${args[0]}개씩이나 지울 일이 있어요? 최대 50개까지 지울 수 있어요!`) // undo if length > 10
         }
         else {
-        msg.channel.bulkDelete(args[0])
+            msg.channel.bulkDelete(args[0])
         }
     }
     if (command === "투표") {
@@ -397,8 +397,8 @@ client.on("message", msg => {
     }
     if (command === "변목길이50킬로미터") {
         msg.channel.send("진짜 대단한 거 같아요, 저 정도면 서있는 것만으로 하체운동 되겠어요. 근데 어떻게 일어나죠?")
-        msg.reply("제 1 번 이스터에그를 찾으셨습니다!") ;
-        hook.send ('Easter Egg No.1 Found!')
+        msg.reply("제 1 번 이스터에그를 찾으셨습니다!");
+        hook.send('Easter Egg No.1 Found!')
     }
     if (command === "힌트2-1") {
         msg.channel.send("유튜브 봐요? 요즘drz인지 뭐시기인지가 되게 재밌던데,");
@@ -413,7 +413,7 @@ client.on("message", msg => {
         msg.channel.send("그 롤하는 영상도 꼭 보세요, 화질은 구려도 꽤나 하는 것 같아요.")
         msg.channel.send("*해당 발언은 안티매터봇이나 Annyeong1#8912와 관련이 없어요. ~~저는 롤을 못하기 때문이죠.~~*")
         msg.reply("제 2 번 이스터에그를 찾으셨습니다!");
-        hook.send ('Easter Egg No.2 Found!')
+        hook.send('Easter Egg No.2 Found!')
     }
     if (command === "힌트3-1") {
         msg.channel.send("찌리찌리찌리찌리찌리찌리");
@@ -427,8 +427,8 @@ client.on("message", msg => {
     if (command === "샤프심만한눈") {
         msg.channel.send("찌리리 눈!")
         msg.channel.send("지이이이이이이이잉\n(샤프심만한 눈은 찌리리 눈 스킬 제6스킬이다.")
-        msg.reply("제 3 번 이스터에그를 찾으셨습니다!") ;
-        hook.send ('Easter Egg No.3 Found!')
+        msg.reply("제 3 번 이스터에그를 찾으셨습니다!");
+        hook.send('Easter Egg No.3 Found!')
     }
     if (command === "힌트4-1") {
         msg.channel.send("이시국에 신차난디아로 놀러왔는데요,");
@@ -442,8 +442,8 @@ client.on("message", msg => {
     if (command === "didicdicdicdickdic") {
         msg.channel.send("디딕 딕딕 디크딕!")
         msg.channel.send("화장실에 다녀왔아요! 뭔가 저기 저 키 작은 봇이 된 느낌이 들어요! @Young-re#3263")
-        msg.reply("제 4 번 이스터에그를 찾으셨습니다!") ;
-        hook.send ('Easter Egg No.4 Found!')
+        msg.reply("제 4 번 이스터에그를 찾으셨습니다!");
+        hook.send('Easter Egg No.4 Found!')
     }
     if (command === "힌트5-1") {
         msg.channel.send("x ck! x ck!");
@@ -457,20 +457,20 @@ client.on("message", msg => {
     if (command === "av신찬") {
         msg.channel.send("에? (방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)에요?\n그럼 (방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)하는 사람들이랑 같이")
         msg.channel.send("(방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)같은 것도 하는 줄 몰랐어요. 그 분 (방송통신심의위원회의「방송통신위원회의 설치 및 운영에 관한 법률」 제21조 제4호 및 제25조 제1항에 따라 여성가족부에 의해 검열된 메시지입니다.)")
-        msg.reply("제 5 번 이스터에그를 찾으셨습니다!") ;
-        hook.send ('Easter Egg No.5 Found!')
+        msg.reply("제 5 번 이스터에그를 찾으셨습니다!");
+        hook.send('Easter Egg No.5 Found!')
     }
     if (command === "78590423") {
         msg.channel.send("호오......")
         msg.channel.send("이걸 찾누....")
         msg.channel.send("하지만 여기서 더 가려면 어떻게 해야 할까?")
         msg.channel.send("011010000111010101101000001011000010000001101001011001000110101100100000011000100111010101110100001000000101010001000111010110100111001001000100010110010111000001110010010010100101111101011001")
-        msg.reply("제 ? 번 이스터에그를 찾지 못하셨습니다?") ;
-        hook.send ('Easter Egg No.0 PreFound!')
+        msg.reply("제 ? 번 이스터에그를 찾지 못하셨습니다?");
+        hook.send('Easter Egg No.0 PreFound!')
     }
     if (command === "rmfjsk_snrnsrksms_ckwrp_ehldjTek") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
-        hook.send ('Easter Egg No.0 Found!')
+        hook.send('Easter Egg No.0 Found!')
     }
 });
 
