@@ -468,7 +468,7 @@ client.on("message", msg => {
         msg.reply("제 ? 번 이스터에그를 찾지 못하셨습니다?");
         hook.send('Easter Egg No.0 PreFound!')
     }
-    if (command === "rmfjsk_snrnsrksms_ckwrp_ehldjTek") {
+    if (command === "rmfjsk_snrnsrksms_ckwrp_ehldjtek") {
         msg.reply("제 0 번 이스터에그를 찾으셨습니다!")
         hook.send('Easter Egg No.0 Found!')
     }
