@@ -475,4 +475,3 @@ client.on("message", msg => {
 });
 
 client.login(config.token)
-//client.login('ODMwOTc0MDk0NDA0NDg1MTgw.YHOe7g.iz4wL4DsZnR8XulODIq6VYCFFbw')
